@@ -1,5 +1,14 @@
+import ProductCarousel from "../components/ProductCarousel";
+import CategoryCard from "../components/CategoryCard";
+
 const HomePage = () => {
-  return <p>This is a home page</p>;
+  return (
+
+    <>
+    <ProductCarousel />
+    <CategoryCard />
+    </>
+  )
 };
 
 export default HomePage;

@@ -8,6 +8,10 @@ import RegisterPage from "./pages/RegisterPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent';
 
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import RoutesWithUserChat from "./components/user/RoutesWithUserChat";
+
 import UserProfilePage from "./pages/user/UserProfilePage";
 import UserOrdersPage from "./pages/user/UserOrdersPage";
 import UserCartDetailsPage from "./pages/user/UserCartDetailsPage";
@@ -31,13 +35,17 @@ function App() {
   return (
 
     <BrowserRouter>
+    <Header />
       <Routes>
+        <Route element={<RoutesWithUserChat />}>
+
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/product-details" element={<ProductDetailsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/product-list" element={<ProductListPage />} />
+        </Route>
 
     {/* Protected user */}
         <Route element={<ProtectedRoutesComponent admin={false} />}>
@@ -46,7 +54,7 @@ function App() {
           <Route path="/user/cart-details" element={<UserCartDetailsPage />} />
           <Route path="/user/order-details" element={<UserOrderDetailsPage />} />
         </Route>
-
+      
 
     {/* Protected admin */}
 
@@ -66,6 +74,7 @@ function App() {
         <Route path="*" element="Page not exist 404" />
 
       </Routes>
+      <Footer />
     </BrowserRouter>
   
   );
