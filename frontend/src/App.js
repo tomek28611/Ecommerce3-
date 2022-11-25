@@ -26,6 +26,7 @@ import AdminEditProductPage from "./pages/admin/AdminEditProductPage";
 import AdminCreateProductPage from "./pages/admin/AdminCreateProductPage";
 import AdminChatsPage from "./pages/admin/AdminChatsPage";
 import AdminAnalyticsPage from "./pages/admin/AdminAnalyticsPage";
+import ScrollToTop from './utils/scrollToTop';
 
 
 
@@ -35,6 +36,7 @@ function App() {
   return (
 
     <BrowserRouter>
+    <ScrollToTop />
     <Header />
       <Routes>
         <Route element={<RoutesWithUserChat />}>

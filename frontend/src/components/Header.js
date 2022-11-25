@@ -1,57 +1,38 @@
-import { Navbar, Nav, Container, NavDropdown, Badge, Form,
-        Dropdown, DropdownButton, Button, InputGroup } from "react-bootstrap";
+import { Container, Row, Col, Alert, ListGroup, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import CartItemComponent from "../components/CartItemComponent";
 
-import { LinkContainer } from 'react-router-bootstrap';
-
-const HeaderComponent = () => {
+const CartPage = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-  
-        <Navbar.Brand href="/">The Best Online Shop</Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-
-            <InputGroup>
-                      <DropdownButton id="dropdown-basic-button" title="All">
-                          <Dropdown.Item href="#/action-1">Phones</Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">Computers</Dropdown.Item>
-                          <Dropdown.Item href="#/action-3">Speakers</Dropdown.Item>
-                      </DropdownButton>
-
-                        <Form.Control type="text" placeholder="Search..."/>
-                        <Button variant="warning">
-                            <i className="bi bi-search"></i>
-                            </Button>{' '}
-            </InputGroup>
-            </Nav>
-            <Nav>
-            <Nav.Link href="/admin/orders">Admin</Nav.Link>
-      
-            <NavDropdown title="John Doe" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/user/my-orders">My Orders</NavDropdown.Item>
-              <NavDropdown.Item href="/user">My Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/">Logout</NavDropdown.Item>
-
-            </NavDropdown>
-            <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/register">Register</Nav.Link>
-              <Nav.Link href="#pricing">
-                <Badge pill bg="danger">
-                    2
-                </Badge>
-                <i className="bi bi-cart-dash"></i>
-                <span className="ms-2">Cart</span>
-                </Nav.Link>
-            
-          </Nav>
-
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <Container fluid>
+      <Row className="mt-4">
+        <Col md={8}>
+          <h1>Shopping Cart</h1>
+          <ListGroup variant="flush">
+            {Array.from({ length: 3 }).map((item, idx) => (
+              <CartItemComponent key={idx} />
+            ))}
+          </ListGroup>
+          <Alert variant="info">Your cart is empty</Alert>
+        </Col>
+        <Col md={4}>
+          <ListGroup>
+            <ListGroup.Item>
+              <h3>Subtotal (2 Items)</h3>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              Price: <span className="fw-bold">$892</span>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <LinkContainer to="/user/order-details">
+                <Button type="button">Proceed To Checkout</Button>
+              </LinkContainer>
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default HeaderComponent;
+export default CartPage;
