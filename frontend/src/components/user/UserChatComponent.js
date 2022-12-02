@@ -1,7 +1,7 @@
 import React from 'react';
 import "../../chat.css";
 
-const UserChat = () => {
+const UserChatComponent = () => {
   return (
     <>
       <input type="checkbox" id="check" />
@@ -42,4 +42,4 @@ const UserChat = () => {
   )
 }
 
-export default UserChat
+export default UserChatComponent

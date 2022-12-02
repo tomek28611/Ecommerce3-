@@ -8,9 +8,9 @@ import RegisterPage from "./pages/RegisterPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent';
 
-import Header from "./components/Header";
+import HeaderComponent from "./components/HeaderComponent";
 import Footer from "./components/Footer";
-import RoutesWithUserChat from "./components/user/RoutesWithUserChat";
+import RoutesWithUserChatComponent from "./components/user/RoutesWithUserChatComponent";
 
 import UserProfilePage from "./pages/user/UserProfilePage";
 import UserOrdersPage from "./pages/user/UserOrdersPage";
@@ -37,9 +37,9 @@ function App() {
 
     <BrowserRouter>
     <ScrollToTop />
-    <Header />
+    <HeaderComponent />
       <Routes>
-        <Route element={<RoutesWithUserChat />}>
+        <Route element={<RoutesWithUserChatComponent />}>
 
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
