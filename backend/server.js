@@ -1,5 +1,5 @@
 require("dotenv").config();
-var helmet = require("helmet");
+var helmet = require('helmet')
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const express = require("express");
@@ -7,7 +7,7 @@ const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-app.use(helmet());
+app.use(helmet())
 
 const httpServer = createServer(app);
 global.io = new Server(httpServer);
@@ -75,15 +75,23 @@ io.on("connection", (socket) => {
 
 const apiRoutes = require("./routes/apiRoutes");
 
-app.get("/", async (req, res, next) => {
-  res.json({ message: "API running..." });
-});
+
 
 // mongodb connection
 const connectDB = require("./config/db");
 connectDB();
 
 app.use("/api", apiRoutes);
+
+const path = require("path");
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../frontend/build")));
+    app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html")));
+} else {
+   app.get("/", (req,res) => {
+      res.json({ message: "API running..." }); 
+   }) 
+}
 
 app.use((error, req, res, next) => {
   if (process.env.NODE_ENV === "development") {
